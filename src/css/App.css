@@ -32,6 +32,11 @@ h1 {
 
 .score {
   padding: 0 2px 0 5px;
+  font-size: 0.9em;
+}
+
+.author {
+  font-size: 0.9em;
 }
 
 .score-highlight {
@@ -53,6 +58,15 @@ h1 {
 
 a {
   text-decoration: none;
+}
+
+.hostname {
+  font-size: 0.8em;
+}
+
+.hckr-news-url {
+  color: black;
+  text-decoration: underline;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Roboto|Rosario");
