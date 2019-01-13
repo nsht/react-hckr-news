@@ -3,6 +3,7 @@ import React from "react";
 class Story extends React.Component {
   render() {
     let score;
+    let comments;
     if (this.props.post.score > 100) {
       score = (
         <span className="score score-highlight">{this.props.post.score}</span>
@@ -12,6 +13,16 @@ class Story extends React.Component {
         <span className="score score-normal">{this.props.post.score}</span>
       );
     }
+    if (this.props.post.descendants > 100) {
+      comments = (
+        <span className="score score-highlight">{this.props.post.descendants}</span>
+      );
+    } else {
+      comments = (
+        <span className="score score-normal">{this.props.post.descendants}</span>
+      );
+    }
+    
     return (
       <li>
         <a href={this.props.post.url} target="_blank" rel="noopener noreferrer">
@@ -28,7 +39,9 @@ class Story extends React.Component {
         </span>
         <div>
           {score} Points by {this.props.post.by}
+          {comments} Comments
         </div>
+
         <br />
         <br />
       </li>
