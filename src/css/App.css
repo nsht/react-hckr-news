@@ -69,4 +69,8 @@ a {
   text-decoration: underline;
 }
 
+.pagination-buttons{
+  padding: 2px;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto|Rosario");

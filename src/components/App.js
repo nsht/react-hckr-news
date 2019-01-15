@@ -1,6 +1,6 @@
 import React from "react";
 import Story from "./Story";
-
+import Paginator from "./paginator";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,8 +39,11 @@ class App extends React.Component {
         return response.json();
       })
       .then(items => {
+        let pages = items.length / 20;
+        console.log(`pages ${pages}`);
         this.setState({
-          items
+          items,
+          pages
         });
         let display = {};
         items.slice(0, 20).forEach(element => {
@@ -60,6 +63,28 @@ class App extends React.Component {
       });
   }
 
+  goToPage = (key) => {
+    let display = {};
+    let items = this.state.items;
+    let start_item = key*20;
+    let last_item = start_item + 20;
+    items.slice(start_item, last_item).forEach(element => {
+      this.getStoryData(element).then(result => {
+        console.log(result);
+        display[element] = result;
+        if (Object.keys(display).length >= 20) {
+          this.setState({
+            display
+          });
+        }
+      });
+    });
+  }
+
+
+
+
+
   render() {
     return (
       <div className="App">
@@ -72,6 +97,8 @@ class App extends React.Component {
               <Story key={key} index={key} post={this.state.display[key]} />
             ))}
           </ol>
+          <Paginator pages={this.state.pages} goToPage={this.goToPage}/>
+          <hr />
         </div>
       </div>
     );

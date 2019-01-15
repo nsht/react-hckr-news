@@ -46,7 +46,6 @@ class Story extends React.Component {
           </a>
         </div>
         <br />
-        <br />
       </li>
     );
   }
