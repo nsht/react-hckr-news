@@ -21,10 +21,6 @@ pre {
   padding: 0;
 }
 
-h1 {
-  font-family: "Rosario", sans-serif;
-}
-
 #root {
   min-height: 100%;
   height: 100%;
@@ -69,8 +65,24 @@ a {
   text-decoration: underline;
 }
 
-.pagination-buttons{
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pagination-buttons {
   padding: 2px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.active-page-indicator {
+  color: orange;
+}
+
+.pagination-buttons {
+  padding-left: 12px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Roboto|Rosario");

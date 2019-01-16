@@ -4,7 +4,6 @@ import Paginator from "./paginator";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("clear");
     this.state = {
       items: [],
       display: {},
@@ -12,7 +11,7 @@ class App extends React.Component {
       filter: "",
       sort_by: "",
       pages: 0,
-      current_page: 0
+      current_page: 1
     };
   }
 
@@ -63,27 +62,23 @@ class App extends React.Component {
       });
   }
 
-  goToPage = (key) => {
+  goToPage = key => {
     let display = {};
     let items = this.state.items;
-    let start_item = key*20;
+    let start_item = key * 20;
     let last_item = start_item + 20;
     items.slice(start_item, last_item).forEach(element => {
       this.getStoryData(element).then(result => {
-        console.log(result);
         display[element] = result;
         if (Object.keys(display).length >= 20) {
           this.setState({
+            current_page:key,
             display
           });
         }
       });
     });
-  }
-
-
-
-
+  };
 
   render() {
     return (
@@ -97,9 +92,11 @@ class App extends React.Component {
               <Story key={key} index={key} post={this.state.display[key]} />
             ))}
           </ol>
-          <Paginator pages={this.state.pages} goToPage={this.goToPage}/>
-          <hr />
         </div>
+        <div className="pagination-container">
+          <Paginator pages={this.state.pages} current_page={this.state.current_page} goToPage={this.goToPage} />
+        </div>
+        <hr />
       </div>
     );
   }
