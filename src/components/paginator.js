@@ -6,7 +6,6 @@ class Paginator extends React.Component {
   }
   render() {
     let pages = [];
-    console.log(new Array(this.props.pages));
     pages = new Array(this.props.pages).fill(0).map((currentElement, index) => {
       let className = "pagination-buttons";
 
