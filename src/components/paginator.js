@@ -1,6 +1,9 @@
 import React from "react";
 
 class Paginator extends React.Component {
+  componentDidUpdate(){
+    this.props.scrollToTop()
+  }
   render() {
     let pages = [];
     console.log(new Array(this.props.pages));

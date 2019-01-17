@@ -39,7 +39,6 @@ class App extends React.Component {
       })
       .then(items => {
         let pages = items.length / 20;
-        console.log(`pages ${pages}`);
         this.setState({
           items,
           pages
@@ -72,7 +71,7 @@ class App extends React.Component {
         display[element] = result;
         if (Object.keys(display).length >= 20) {
           this.setState({
-            current_page:key,
+            current_page: key,
             display
           });
         }
@@ -80,11 +79,18 @@ class App extends React.Component {
     });
   };
 
+  scrollToTop = () => {
+    this.header.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  header = React.createRef();
   render() {
     return (
       <div className="App">
         <div>
-          <h1 className="header">Hacker News</h1>
+          <h1 className="header" ref={this.header}>
+            Hacker News
+          </h1>
         </div>
         <div>
           <ol>
@@ -94,7 +100,12 @@ class App extends React.Component {
           </ol>
         </div>
         <div className="pagination-container">
-          <Paginator pages={this.state.pages} current_page={this.state.current_page} goToPage={this.goToPage} />
+          <Paginator
+            pages={this.state.pages}
+            current_page={this.state.current_page}
+            goToPage={this.goToPage}
+            scrollToTop={this.scrollToTop}
+          />
         </div>
         <hr />
       </div>
