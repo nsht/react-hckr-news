@@ -38,7 +38,8 @@ class App extends React.Component {
         return response.json();
       })
       .then(items => {
-        let pages = items.length / 20;
+        let pages = Math.ceil(items.length / 20);
+
         this.setState({
           items,
           pages
@@ -64,12 +65,12 @@ class App extends React.Component {
   goToPage = key => {
     let display = {};
     let items = this.state.items;
-    let start_item = (key-1) * 20;
+    let start_item = (key - 1) * 20;
     let last_item = start_item + 20;
     items.slice(start_item, last_item).forEach(element => {
       this.getStoryData(element).then(result => {
         display[element] = result;
-        if (Object.keys(display).length >= 20) {
+        if (Object.keys(display).length >= 20 || key === this.state.pages) {
           this.setState({
             current_page: key,
             display
@@ -93,7 +94,13 @@ class App extends React.Component {
           </h1>
         </div>
         <div>
-          <ol start={this.state.current_page !== 1 ? ((this.state.current_page-1)*20)+1:1}>
+          <ol
+            start={
+              this.state.current_page !== 1
+                ? (this.state.current_page - 1) * 20 + 1
+                : 1
+            }
+          >
             {Object.keys(this.state.display).map(key => (
               <Story key={key} index={key} post={this.state.display[key]} />
             ))}
