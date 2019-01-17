@@ -15,7 +15,7 @@ class Story extends React.Component {
     } else {
       score_class = "score-normal";
     }
-    if (this.props.post.descendants > 100) {
+    if (this.props.post.descendants > 50) {
       comments_class = "score-highlight";
     } else {
       comments_class = "score-normal";
@@ -33,16 +33,14 @@ class Story extends React.Component {
             {this.props.post.score} Points
           </span>
           -
-          <span className={"score " + comments_class}>
-            {this.props.post.descendants} Comments
-          </span>
           <a
             href={this.props.post.hckr_url}
             target="_blank"
-            rel="noopener noreferrer"
-            className="score hckr-news-url"
-          >
-            (Hacker News URL)
+            rel="noopener noreferrer">
+            <span className={"score " + comments_class}>
+              {this.props.post.descendants} Comments
+            </span>
+            <span className="score hckr-news-url">(Hacker News URL) </span>
           </a>
         </div>
         <br />
