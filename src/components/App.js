@@ -64,7 +64,7 @@ class App extends React.Component {
   goToPage = key => {
     let display = {};
     let items = this.state.items;
-    let start_item = key * 20;
+    let start_item = (key-1) * 20;
     let last_item = start_item + 20;
     items.slice(start_item, last_item).forEach(element => {
       this.getStoryData(element).then(result => {
@@ -93,7 +93,7 @@ class App extends React.Component {
           </h1>
         </div>
         <div>
-          <ol>
+          <ol start={this.state.current_page !== 1 ? ((this.state.current_page-1)*20)+1:1}>
             {Object.keys(this.state.display).map(key => (
               <Story key={key} index={key} post={this.state.display[key]} />
             ))}
