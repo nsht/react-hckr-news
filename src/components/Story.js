@@ -10,6 +10,8 @@ class Story extends React.Component {
   render() {
     let score_class;
     let comments_class;
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    let date = new Date(this.props.post.time * 1000).toLocaleDateString("en-US");
     if (this.props.post.score > 100) {
       score_class = "score-highlight";
     } else {
@@ -26,8 +28,9 @@ class Story extends React.Component {
         <a href={this.props.post.url} target="_blank" rel="noopener noreferrer">
           <span>{this.props.post.title} </span>
         </a>
-        <span className="hacker-news-link" />
-        <div className="hostname">{this.getHostName(this.props.post.url)}</div>
+        <div className="hostname">{this.getHostName(this.props.post.url)}
+         - <span>{date} </span>
+        </div>
         <div>
           <span className={"score " + score_class}>
             {this.props.post.score} Points
