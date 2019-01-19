@@ -30,7 +30,7 @@ pre {
   padding: 0 5px 0 5px;
   font-size: 0.9em;
   text-decoration: none !important;
-  color:black;
+  color: black;
 }
 
 .author {
@@ -86,5 +86,10 @@ a {
 .pagination-buttons {
   padding-left: 12px;
 }
+
+.post-date {
+  padding-left: 5px;
+}
+
 
 @import url("https://fonts.googleapis.com/css?family=Roboto|Rosario");

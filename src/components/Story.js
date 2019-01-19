@@ -24,12 +24,12 @@ class Story extends React.Component {
     }
 
     return (
-      <li>
+      <li className="story-item">
         <a href={this.props.post.url} target="_blank" rel="noopener noreferrer">
           <span>{this.props.post.title} </span>
         </a>
         <div className="hostname">{this.getHostName(this.props.post.url)}
-         - <span>{date} </span>
+          <span className="post-date">{date} </span>
         </div>
         <div>
           <span className={"score " + score_class}>
