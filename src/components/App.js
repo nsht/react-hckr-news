@@ -11,7 +11,8 @@ class App extends React.Component {
       filter: "",
       sort_by: "",
       pages: 0,
-      current_page: 1
+      current_page: 1,
+      dark_mode: false
     };
   }
 
@@ -84,13 +85,30 @@ class App extends React.Component {
     this.header.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  toggle_dark_mode = () => {
+    if (this.state.dark_mode === true) {
+      this.setState({
+        dark_mode: false
+      });
+    } else {
+      this.setState({
+        dark_mode: true
+      });
+    }
+  };
+
   header = React.createRef();
   render() {
+    let classname = this.state.dark_mode ? "dark-mode" : "normal-mode";
     return (
-      <div className="App">
+      <div className={`App ${classname}`}>
         <div>
           <h1 className="header" ref={this.header}>
             Hacker News
+            <label class="switch">
+              <input type="checkbox" onChange={this.toggle_dark_mode} />
+              <span class="slider round" />
+            </label>
           </h1>
         </div>
         <div>
