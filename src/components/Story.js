@@ -10,7 +10,8 @@ class Story extends React.Component {
   render() {
     let score_class;
     let comments_class;
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    // TODO make date relative
+    // const options = { year: 'numeric', month: 'long', day: 'numeric' };
     let date = new Date(this.props.post.time * 1000).toLocaleDateString();
     if (this.props.post.score > 100) {
       score_class = "score-highlight";
