@@ -1,6 +1,8 @@
 import React from "react";
 import Story from "./Story";
 import Paginator from "./paginator";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,7 @@ class App extends React.Component {
       sort_by: "",
       pages: 0,
       current_page: 1,
-      dark_mode: false
+      dark_mode: JSON.parse(localStorage.getItem("dark_mode")) || false
     };
   }
 
@@ -90,10 +92,12 @@ class App extends React.Component {
       this.setState({
         dark_mode: false
       });
+      localStorage.setItem("dark_mode", JSON.stringify(false));
     } else {
       this.setState({
         dark_mode: true
       });
+      localStorage.setItem("dark_mode", JSON.stringify(true));
     }
   };
 
@@ -105,9 +109,9 @@ class App extends React.Component {
         <div>
           <h1 className="header" ref={this.header}>
             Hacker News
-            <label class="switch">
-              <input type="checkbox" onChange={this.toggle_dark_mode} />
-              <span class="slider round" />
+            <label className="switch">
+              <input type="checkbox" onChange={this.toggle_dark_mode} defaultChecked={this.state.dark_mode} />
+              <span className="slider round" />
             </label>
           </h1>
         </div>
@@ -132,7 +136,6 @@ class App extends React.Component {
             scrollToTop={this.scrollToTop}
           />
         </div>
-        <hr />
       </div>
     );
   }
