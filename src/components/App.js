@@ -1,8 +1,8 @@
 import React from "react";
 import Story from "./Story";
 import Paginator from "./paginator";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);

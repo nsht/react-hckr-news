@@ -1,4 +1,7 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentAlt, faHeart } from "@fortawesome/free-regular-svg-icons";
+
 
 class Story extends React.Component {
   getHostName = url => {
@@ -8,6 +11,8 @@ class Story extends React.Component {
     return "";
   };
   render() {
+  console.log(faCommentAlt)
+
     let score_class;
     let comments_class;
     // TODO make date relative
@@ -34,7 +39,7 @@ class Story extends React.Component {
         </div>
         <div>
           <span className={"score " + score_class}>
-            {this.props.post.score} Points
+            {this.props.post.score} <FontAwesomeIcon icon={faHeart} />
           </span>
           -
           <a
@@ -42,9 +47,8 @@ class Story extends React.Component {
             target="_blank"
             rel="noopener noreferrer">
             <span className={"score " + comments_class}>
-              {this.props.post.descendants} Comments
+              {this.props.post.descendants} <FontAwesomeIcon icon={faCommentAlt} />
             </span>
-            <span className="score hckr-news-url">(Hacker News URL) </span>
           </a>
         </div>
         <br />
