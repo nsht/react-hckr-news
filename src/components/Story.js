@@ -11,8 +11,7 @@ class Story extends React.Component {
     return "";
   };
   render() {
-  console.log(faCommentAlt)
-
+    
     let score_class;
     let comments_class;
     // TODO make date relative
