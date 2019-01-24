@@ -161,6 +161,9 @@ body .dark-mode {
   color:white;
 }
 
+.dark-mode a{
+  color:pink;
+}
 .normal-mode .score{
   color:black;
 }

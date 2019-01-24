@@ -1,20 +1,21 @@
 import React from "react";
 import Story from "./Story";
 import Paginator from "./paginator";
-
+import { Transition } from 'react-spring'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      display: {},
+      display: [],
       median_score: 0,
       filter: "",
       sort_by: "",
       pages: 0,
       current_page: 1,
-      dark_mode: JSON.parse(localStorage.getItem("dark_mode")) || false
+      dark_mode: JSON.parse(localStorage.getItem("dark_mode")) || false,
+      item :[1,2,3,4]
     };
   }
 
@@ -47,15 +48,15 @@ class App extends React.Component {
           items,
           pages
         });
-        let display = {};
+        let display = [];
         items.slice(0, 20).forEach(element => {
           this.getStoryData(element).then(result => {
-            display[element] = result;
+            display.push(result);
             // Prevents rendering the component while the data is being fetched
             // Removing this condition causes constant rerendering and rearranging of the component
             // Will cause no data to be rendered if the count is  less than 20 but that is an edge case
             // unless the last page is visited using pagination or multiple filters are used
-            if (Object.keys(display).length >= 20) {
+            if (display.length >= 20) {
               this.setState({
                 display
               });
@@ -64,6 +65,7 @@ class App extends React.Component {
         });
       });
   }
+
 
   goToPage = key => {
     let display = {};
@@ -103,6 +105,7 @@ class App extends React.Component {
 
   header = React.createRef();
   render() {
+    console.log("render")
     let classname = this.state.dark_mode ? "dark-mode" : "normal-mode";
     return (
       <div className={`App ${classname}`}>
@@ -123,6 +126,19 @@ class App extends React.Component {
                 : 1
             }
           >
+          <Transition
+          items={this.state.item}
+          from={{ transform: 'translate3d(0,-40px,0)' }}
+          enter={{ transform: 'translate3d(0,0px,0)' }}
+          leave={{ transform: 'translate3d(0,-40px,0)' }}
+          unique={true}
+          >
+            {item => props =>
+            <div>{item}</div>
+            }
+
+
+          </Transition>
             {Object.keys(this.state.display).map(key => (
               <Story key={key} index={key} post={this.state.display[key]} />
             ))}
